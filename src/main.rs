@@ -6,6 +6,7 @@ use semver::Version;
 fn main() {
     hello_world();
     intro_semver();
+    borrowed_ref();
 }
 
 fn hello_world() {
@@ -23,4 +24,16 @@ fn intro_semver() {
     }));
 
         println!("Versions compared successfully!");
+}
+
+fn borrowed_ref() {
+    let mut v = vec![];
+
+    v.push("Hello");
+
+    let x = &v[0].clone();
+
+    v.push("world");
+
+    println!("{}", x);
 }
