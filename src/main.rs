@@ -40,9 +40,9 @@ fn borrowed_ref() {
 }
 
 fn threads() {
-    for _ in range(0u, 10u) {
+    for i in range(0u, 10u) {
         spawn(proc() {
-            println!("Hello, world!");
+            println!("Hello, world! {}", i);
         });
     }
 }
