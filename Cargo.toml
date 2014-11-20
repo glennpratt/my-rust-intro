@@ -1,5 +1,9 @@
 [package]
 
 name = "rust-intro"
-version = "0.0.1"
+version = "0.0.1-dev"
 authors = ["Glenn Pratt <glenn.pratt@acquia.com>"]
+
+[dependencies.semver]
+
+git = "https://github.com/rust-lang/semver.git"
