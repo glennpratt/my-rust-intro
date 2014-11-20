@@ -7,6 +7,7 @@ fn main() {
     hello_world();
     intro_semver();
     borrowed_ref();
+    threads();
 }
 
 fn hello_world() {
@@ -36,4 +37,12 @@ fn borrowed_ref() {
     v.push("world");
 
     println!("{}", x);
+}
+
+fn threads() {
+    for _ in range(0u, 10u) {
+        spawn(proc() {
+            println!("Hello, world!");
+        });
+    }
 }
