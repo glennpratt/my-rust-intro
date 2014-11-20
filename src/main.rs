@@ -1,6 +1,7 @@
 extern crate semver;
 
 use semver::Version;
+use std::sync::{Arc,Mutex};
 
 
 fn main() {
@@ -8,6 +9,7 @@ fn main() {
     intro_semver();
     borrowed_ref();
     threads();
+    locking();
 }
 
 fn hello_world() {
@@ -45,4 +47,20 @@ fn threads() {
             println!("Hello, world! {}", i);
         });
     }
+}
+
+fn locking() {
+    let numbers_mutex = Arc::new(Mutex::new(vec![1i, 2i, 3i]));
+
+    for i in range(0u, 3u) {
+        let nums_mutex = numbers_mutex.clone();
+        spawn(proc() {
+            let mut nums = nums_mutex.lock();
+            for j in range(0, 3) { (*nums)[j] += 1 }
+            println!("nums in thread {} is {}", i, *nums);
+        });
+    }
+    let numbers = numbers_mutex.lock();
+    println!("numbers in main {}", *numbers);
+    // How do we join threads?
 }
