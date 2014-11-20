@@ -10,6 +10,7 @@ fn main() {
     borrowed_ref();
     threads();
     locking();
+    iterator();
 }
 
 fn hello_world() {
@@ -63,4 +64,13 @@ fn locking() {
     let numbers = numbers_mutex.lock();
     println!("numbers in main {}", *numbers);
     // How do we join threads?
+}
+
+fn iterator() {
+  // Rust inferred the type of 2 & 3 by 1i. Neat.
+  let vec = vec![1i, 2, 3];
+
+  for i in vec.iter() {
+    println!("{}", i)
+  }
 }
